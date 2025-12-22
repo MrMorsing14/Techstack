@@ -1,4 +1,7 @@
 package dk.ek.techstack.repository;
 
-public record ProductRepository() {
+import dk.ek.techstack.model.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }
