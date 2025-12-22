@@ -26,8 +26,8 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public ResponseEntity<Category> delete(Category category) {
-        categoryRepository.delete(category);
-        return null;
+    public void deleteById(Long id) {
+        categoryRepository.deleteById(id);
+
     }
 }

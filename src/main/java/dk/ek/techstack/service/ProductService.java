@@ -27,8 +27,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public ResponseEntity<Product> delete(Product product) {
-        productRepository.delete(product);
-        return null;
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
     }
 }
