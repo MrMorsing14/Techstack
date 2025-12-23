@@ -7,14 +7,13 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  ## Ensure lowercase image:
+  IMAGE_NAME: ${{ github.repository_owner }}/techstack
 
 jobs:
-  # 1️⃣ Run CI tests first
   java-test:
     uses: ./.github/workflows/java-test-reusable.yml
 
-  # 2️⃣ Build & push Docker image (CD)
   build-and-push:
     needs: java-test
     runs-on: ubuntu-latest
