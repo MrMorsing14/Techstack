@@ -18,9 +18,10 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      interval: 20s
-      retries: 5
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u$MYSQL_USER -p$MYSQL_PASSWORD || exit 1" ]
+      interval: 10s
+      retries: 15
+      start_period: 30s
 
   app:
     networks:
