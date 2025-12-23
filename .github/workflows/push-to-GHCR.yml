@@ -12,7 +12,7 @@ env:
 jobs:
   # 1️⃣ Run CI tests first
   java-test:
-    uses: ./.github/workflows/ci.yml
+    uses: ./.github/workflows/java-test-reusable.yml
 
   # 2️⃣ Build & push Docker image (CD)
   build-and-push:
