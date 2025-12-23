@@ -6,13 +6,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  steps:
   java-test:
     uses: ./.github/workflows/java-test-reusable.yml
 
   docker-ci:
     needs: java-test
-    uses: ./.github/workflows/docker-test-reusable.yml
+    uses: ./.github/workflows/docker-ci-reusable.yml
+
 
 
 
