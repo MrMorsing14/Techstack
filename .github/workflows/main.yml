@@ -1,9 +1,15 @@
-name: CI
+name: Java + Javascript CI #continous integration
 
 on:
   push:
+    branches:
+      - main
   pull_request:
+    branches:
+      - main
+
   workflow_dispatch:
+
 
 jobs:
   java-test:
@@ -12,7 +18,11 @@ jobs:
   docker-ci:
     needs: java-test
     uses: ./.github/workflows/docker-ci-reusable.yml
-
+    secrets:
+        MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        MYSQL_DATABASE: tech_stack_db
+        MYSQL_USER: fred
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
 
 
 
