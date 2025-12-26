@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class InitData implements CommandLineRunner {
@@ -19,18 +21,20 @@ public class InitData implements CommandLineRunner {
 
 
     @Override
-    public void run(String... args){
+    public void run(String... args) {
+        if (categoryRepository.count() > 0) {
+            return;
+        }
+
         Category electronics = new Category(null, "Electronics");
         Category books = new Category(null, "Books");
 
-        categoryRepository.save(electronics);
-        categoryRepository.save(books);
+        categoryRepository.saveAll(List.of(electronics, books));
 
         Product laptop = new Product(null, "IPhone 17 Pro Max", 8200.00);
         Product book = new Product(null, "Linux pocket guide", 239.99);
 
-        productRepository.save(laptop);
-        productRepository.save(book);
+        productRepository.saveAll(List.of(laptop, book));
     }
 
 }
